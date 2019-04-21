@@ -1,0 +1,32 @@
+[
+	{
+		"stockName": "iphone",
+		"noOfShare": 2000.0,
+		"sharePrice": 30000.0
+	},
+	{
+		"stockName": "VIVO",
+		"noOfShare": 1200.0,
+		"sharePrice": 15000.0
+	},
+	{
+		"stockName": "OPPO",
+		"noOfShare": 4.0,
+		"sharePrice": 78.0
+	},
+	{
+		"stockName": "HTC",
+		"noOfShare": 1300.0,
+		"sharePrice": 18000.0
+	},
+	{
+		"stockName": "Samsung",
+		"noOfShare": 3000.0,
+		"sharePrice": 20000.0
+	},
+	{
+		"stockName": "Mi",
+		"noOfShare": 5000.0,
+		"sharePrice": 12000.0
+	}
+]
