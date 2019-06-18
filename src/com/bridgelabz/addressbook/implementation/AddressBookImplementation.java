@@ -87,37 +87,30 @@ public class AddressBookImplementation implements AddressBookManager {
 
 	@Override
 	public void removePerson(String removeName) {
-		
 		addressList.removeIf(delete -> delete.getFirstName().equalsIgnoreCase(removeName));
 		writeFile();
 		System.out.println("Successfully removed elements from the list");
 	}
-
 	@Override
 	public void sortByLastName() {
 		addressList.sort((Address s1, Address s2) -> s1.getLastName().compareTo(s2.getLastName()));
 		addressList.forEach(result -> System.out.println(result));
 	}
-
 	@Override
 	public void sortByZipCode() {
 		addressList.sort((Address s1, Address s2) -> s1.getZipCode().compareTo(s2.getZipCode()));
 		addressList.forEach(details -> System.out.println(details));
-
 	}
-
 	@Override
 	public void writeFile() {
 		Gson gson = new Gson();
-		String json = gson.toJson(addressList);
+		String json =gson.toJson(addressList);
 		try (FileWriter file = new FileWriter(
-				"D:\\javaproject\\Object Oriented Programs\\src\\com\\bridgelabz\\addressbook\\model\\AddressBook.json")) {
+				"D:\\javaproject\\Object Oriented Programs\\src\\com\\bridgelabz\\commercialdataprocessing\\model\\StockApp.json")) {
 			file.write(json);
 			file.flush();
-			
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 	}
-
 }

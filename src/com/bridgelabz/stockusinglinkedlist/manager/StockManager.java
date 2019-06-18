@@ -8,4 +8,5 @@ public interface StockManager {
 	public void remove(String name);
 
 	public void writeFile();
+
 }

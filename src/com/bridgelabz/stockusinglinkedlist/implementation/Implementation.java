@@ -1,5 +1,6 @@
 package com.bridgelabz.stockusinglinkedlist.implementation;
 
+import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -11,42 +12,47 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
+import com.bridgelabz.Stock.model.Stock;
 import com.bridgelabz.stockusinglinkedlist.manager.StockManager;
 import com.bridgelabz.stockusinglinkedlist.model.StockModel;
 import com.bridgelabz.util.CustomLinkedList;
 import com.bridgelabz.util.Util;
 import com.google.gson.Gson;
 
-public class Implementation implements StockManager{
+public class Implementation implements StockManager {
 	JSONArray jsonArray;
 	StockModel shares = new StockModel();
-
 	List<StockModel> list = new ArrayList<>();
 	CustomLinkedList<StockModel> linkedList = new CustomLinkedList<>();
 	JSONObject jobject = new JSONObject();
 
 	@Override
 	public void fileRead() {
+		
 		JSONParser parser = new JSONParser();
-		FileReader fr;
-		try {
-			fr = new FileReader("D:\\javaproject\\Java\\src\\com\\bridgelabz\\stock\\model\\Stock.json");
-			jsonArray = (JSONArray) parser.parse(fr);
-		} catch (IOException e) {
-
-			e.printStackTrace();
-		} catch (ParseException e) {
-			e.printStackTrace();
-		}
-		for (Object obj : jsonArray) {
-			StockModel comShare = new StockModel();
-			jobject = (JSONObject) obj;
-			String name = (String) jobject.get("name");
-			Long noOfShare = (Long) jobject.get("share number");
-			comShare.setComapanyName(name);
-			comShare.setNoOfShare(noOfShare);
-			linkedList.add(comShare);
-
+		{
+			try {
+				jsonArray = (JSONArray) parser.parse(new FileReader(
+						"D:\\javaproject\\Object Oriented Programs\\src\\com\\bridgelabz\\stockusinglinkedlist\\model\\Stock.json"));
+				System.out.println("====>>" + jsonArray);
+			} catch (FileNotFoundException e) {
+				
+				e.printStackTrace();
+			} catch (IOException e) {
+				
+				e.printStackTrace();
+			} catch (ParseException e) {
+				
+				e.printStackTrace();
+			}
+			for (Object obj : jsonArray) {
+				 StockModel comShare = new StockModel();
+				jobject = (JSONObject) obj;
+				String name = (String) jobject.get("name");
+			      Long noOfShare = (Long) jobject.get("share number"); comShare.setComapanyName(name);
+			  comShare.setNoOfShare(noOfShare);
+			  linkedList.add(comShare);
+			}
 		}
 	}
 
@@ -66,11 +72,11 @@ public class Implementation implements StockManager{
 		linkedList.printList();
 		System.out.println(linkedList.size());
 	}
-
+	
 	@Override
 	public void remove(String name) {
-		
-		System.out.println("Linked List"+ new Gson().toJson(linkedList));
+
+		System.out.println("Linked List" + new Gson().toJson(linkedList));
 
 		for (StockModel share : linkedList) {
 			if (share != null && share.getComapanyName().equals(name)) {
@@ -93,7 +99,7 @@ public class Implementation implements StockManager{
 		System.out.println("content" + g);
 
 		try {
-			FileWriter file = new FileWriter("D:\\javaproject\\Java\\src\\com\\bridgelabz\\stock\\model\\Stock.json");
+			FileWriter file = new FileWriter("D:\\javaproject\\Object Oriented Programs\\src\\com\\bridgelabz\\stockusinglinkedlist\\model\\Stock.json");
 			file.write(g);
 			file.flush();
 			System.out.println("written into file");

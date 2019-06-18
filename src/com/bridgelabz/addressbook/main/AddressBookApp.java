@@ -22,7 +22,6 @@ public class AddressBookApp {
 		int input = Util.getInt();
 		switch (input) {
 		case 1: {
-
 			System.out.println("Enter first name : ");
 			String firstName = Util.getString();
 			System.out.println("Enter last name : ");
@@ -37,8 +36,7 @@ public class AddressBookApp {
 			Long phoneNumber = Util.getLong();
 			System.out.println("Enter zipcode : ");
 			Long zipCode = Util.getLong();
-
-			details.addPerson(firstName, lastName, zipCode, phoneNumber, city, state, address);
+			details.addPerson(firstName,lastName,zipCode,phoneNumber,city,state,address);
 			details.writeFile();
 			break;
 		}
@@ -59,7 +57,5 @@ public class AddressBookApp {
 		default:
 			break;
 		}
-
 	}
-
 }
